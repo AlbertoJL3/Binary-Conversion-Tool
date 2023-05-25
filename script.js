@@ -8,7 +8,6 @@ function getSelectorText() {
     var optionText = selectedOption.text;
     console.log(optionText)
     return optionText
-
 }
 
 //gets text from input box
@@ -20,25 +19,10 @@ function getInput() {
 }
 
 function BinaryToDigit(input) {
-
+    return parseInt(input, 2);
 }
 
-function DigitToBinary(input) {
 
-}
-
-function BinaryToHexadecimal(input) {
-
-}
-
-function HexadecimalToBinary(input) {
-
-}
-
-function handleEvent() {
-    getSelectorText();
-    getInput();
-}
 
 button.addEventListener('click', function (event) {
     event.preventDefault();
