@@ -2,6 +2,7 @@ const button = document.querySelector('.btn');
 const resultEl = document.querySelector('.resultsCard');
 const resultsText = document.querySelector('.results');
 
+//gets text from selector
 function getSelectorText() {
     const menuEl = document.querySelector('.selector');
     var selectedOption = menuEl.options[menuEl.selectedIndex];
@@ -21,6 +22,7 @@ function getInput() {
     return inputValue
 }
 
+//Functions for tools/methods
 function BinaryToDigit(input) {
     return parseInt(input, 2);
 }
@@ -40,38 +42,61 @@ function HexadecimalToBinary(input) {
     var binary = DigitToBinary(digit);
     return binary;
 }
-
-function BinaryInfo() {
-    console.log('sucker!');
+//checks if the input is a valid binary number 
+function isValidBinary(input) {
+    for (let i = 0; i < input.length; i++) {
+        const char = input[i];
+        if (char !== '0' && char !== '1') {
+            return false
+        }
+    }
+    return true
 }
 
-function showResults() {
-
+//checks if the input is a valid digit
+function isValidDigit(digit) {
+    return !isNaN(parseInt(digit, 10)) && parseInt(digit, 10) >= 0 && parseInt(digit, 10) <= 9;
+}
+//checks if its a valid hexadecimal
+function isValidHex(character) {
+    const hexRegex = /^[0-9A-Fa-f]$/;
+    return hexRegex.test(character);
 }
 
 function methodToPage(method, input) {
     if (method == 'Binary to Digit') {
-        console.log('BtoD')
-        var result = BinaryToDigit(input);
+        if (isValidBinary(input)) {
+            var result = BinaryToDigit(input);
+        } else (
+            window.alert('please input a valid binary number!')
+        )
     }
     else if (method == 'Digit to Binary') {
-        console.log('DtoB')
-        var result = DigitToBinary(input);
+        if (isValidDigit(input)) {
+            var result = DigitToBinary(input);
+        } else (
+            window.alert('please input a valid digit!')
+        )
     }
     else if (method == 'Binary to Hexadecimal') {
-        console.log('BtoH')
-        var result = BinaryToHexadecimal(input);
+        if (isValidBinary(input)) {
+            var result = BinaryToHexadecimal(input);
+        } else (
+            window.alert('please input a valid binary number!')
+        )
     }
     else if (method == 'Hexadecimal to Binary') {
-        console.log('HtoB')
-        var result = HexadecimalToBinary(input);
+        if (isValidHex(input)) {
+            var result = HexadecimalToBinary(input);
+        } else (
+            window.alert('please input a valid Hexadecimal!')
+        )
     }
-    else if (method == 'Binary History') {
-        var result = BinaryInfo();
-    } else {
+    else {
         window.alert('invalid')
     }
 
+    //shows result box and adds to page
     var element = document.querySelector(".resultsCard");
     element.classList.remove("hide");
     var resultEl = document.querySelector('.results');
@@ -82,7 +107,6 @@ function handleEvent() {
     var input = getInput();
     var method = getSelectorText();
     methodToPage(method, input);
-    showResults();
 }
 
 button.addEventListener('click', function (event) {
