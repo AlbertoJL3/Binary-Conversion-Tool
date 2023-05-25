@@ -31,6 +31,17 @@ function BinaryToHexadecimal(input) {
     return hexadecimal;
 }
 
+function HexadecimalToBinary(input) {
+    var digit = parseInt(input, 16);
+    var binary = DigitToBinary(digit);
+    return binary;
+}
+
+function handleEvent() {
+    getSelectorText();
+    getInput();
+}
+
 button.addEventListener('click', function (event) {
     event.preventDefault();
     handleEvent();
