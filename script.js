@@ -36,6 +36,32 @@ function BinaryToHexadecimal(input) {
     var hexadecimal = digit.toString(16).toUpperCase();
     return hexadecimal;
 }
+//function for binary to text
+function binaryToAscii(binaryString) {
+    // Split the binary string into 8-bit chunks
+    const binaryChunks = binaryString.match(/.{1,8}/g);
+
+    // Convert each chunk to decimal and then to ASCII character
+    const asciiChars = binaryChunks.map(chunk => String.fromCharCode(parseInt(chunk, 2)));
+
+    // Join the ASCII characters into a string
+    const asciiText = asciiChars.join('');
+
+    return asciiText;
+}
+//Text to binary
+function textToBinary(text) {
+    let binaryString = '';
+    for (let i = 0; i < text.length; i++) {
+        // Get the ASCII code for each character
+        const charCode = text.charCodeAt(i);
+        // Convert the ASCII code to binary and pad with leading zeros if necessary
+        const binary = charCode.toString(2).padStart(8, '0');
+        binaryString += binary;
+    }
+    return binaryString;
+}
+
 
 function HexadecimalToBinary(input) {
     var digit = parseInt(input, 16);
@@ -64,6 +90,19 @@ function isValidHex(character) {
     const hexRegex = /^[0-9A-Fa-f]$/;
     return hexRegex.test(character);
 }
+function isValidText(text) {
+    for (let i = 0; i < text.length; i++) {
+        // Get the ASCII code for each character
+        const charCode = text.charCodeAt(i);
+
+        // Check if the ASCII code is outside the valid range (0-127)
+        if (charCode < 0 || charCode > 127) {
+            return false;
+        }
+    }
+    return true;
+}
+
 //Produces results and appends to page
 function methodToPage(method, input) {
     if (method == 'Binary to Digit') {
@@ -92,6 +131,20 @@ function methodToPage(method, input) {
             var result = HexadecimalToBinary(input);
         } else (
             window.alert('please input a valid Hexadecimal!')
+        )
+    }
+    else if (method == 'Text to Binary') {
+        if (isValidText(input)) {
+            var result = textToBinary(input);
+        } else (
+            window.alert('please input a valid String!')
+        )
+    }
+    else if (method == 'Binary to Text') {
+        if (isValidBinary(input)) {
+            var result = binaryToAscii(input);
+        } else (
+            window.alert('please input a valid binary number!')
         )
     }
     else {
