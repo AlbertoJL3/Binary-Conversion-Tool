@@ -15,6 +15,9 @@ function getInput() {
     const inputEl = document.querySelector('[name="info"]');
     var inputValue = inputEl.value;
     console.log(inputValue)
+    if (inputValue == '') {
+        window.alert('please add an input!')
+    }
     return inputValue
 }
 
@@ -23,7 +26,8 @@ function BinaryToDigit(input) {
 }
 
 function DigitToBinary(input) {
-    return input.toString(2);
+    var number = parseInt(input)
+    return number.toString(2);
 }
 function BinaryToHexadecimal(input) {
     var digit = BinaryToDigit(input);
@@ -37,9 +41,48 @@ function HexadecimalToBinary(input) {
     return binary;
 }
 
+function BinaryInfo() {
+    console.log('sucker!');
+}
+
+function showResults() {
+
+}
+
+function methodToPage(method, input) {
+    if (method == 'Binary to Digit') {
+        console.log('BtoD')
+        var result = BinaryToDigit(input);
+    }
+    else if (method == 'Digit to Binary') {
+        console.log('DtoB')
+        var result = DigitToBinary(input);
+    }
+    else if (method == 'Binary to Hexadecimal') {
+        console.log('BtoH')
+        var result = BinaryToHexadecimal(input);
+    }
+    else if (method == 'Hexadecimal to Binary') {
+        console.log('HtoB')
+        var result = HexadecimalToBinary(input);
+    }
+    else if (method == 'Binary History') {
+        var result = BinaryInfo();
+    } else {
+        window.alert('invalid')
+    }
+
+    var element = document.querySelector(".resultsCard");
+    element.classList.remove("hide");
+    var resultEl = document.querySelector('.results');
+    resultEl.innerHTML = result;
+}
+
 function handleEvent() {
-    getSelectorText();
-    getInput();
+    var input = getInput();
+    var method = getSelectorText();
+    methodToPage(method, input);
+    showResults();
 }
 
 button.addEventListener('click', function (event) {
