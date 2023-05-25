@@ -42,6 +42,8 @@ function HexadecimalToBinary(input) {
     var binary = DigitToBinary(digit);
     return binary;
 }
+
+//VALIDATORS
 //checks if the input is a valid binary number 
 function isValidBinary(input) {
     for (let i = 0; i < input.length; i++) {
@@ -55,14 +57,14 @@ function isValidBinary(input) {
 
 //checks if the input is a valid digit
 function isValidDigit(digit) {
-    return !isNaN(parseInt(digit, 10)) && parseInt(digit, 10) >= 0 && parseInt(digit, 10) <= 9;
+    return /^\d+$/.test(digit);
 }
 //checks if its a valid hexadecimal
 function isValidHex(character) {
     const hexRegex = /^[0-9A-Fa-f]$/;
     return hexRegex.test(character);
 }
-
+//Produces results and appends to page
 function methodToPage(method, input) {
     if (method == 'Binary to Digit') {
         if (isValidBinary(input)) {
@@ -103,12 +105,14 @@ function methodToPage(method, input) {
     resultEl.innerHTML = result;
 }
 
+//handles event listener
 function handleEvent() {
     var input = getInput();
     var method = getSelectorText();
     methodToPage(method, input);
 }
 
+//event listener for GO button
 button.addEventListener('click', function (event) {
     event.preventDefault();
     handleEvent();
