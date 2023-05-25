@@ -85,11 +85,12 @@ function isValidBinary(input) {
 function isValidDigit(digit) {
     return /^\d+$/.test(digit);
 }
-//checks if its a valid hexadecimal
-function isValidHex(character) {
-    const hexRegex = /^[0-9A-Fa-f]$/;
-    return hexRegex.test(character);
-}
+//checks if its a valid hex string
+function isValidHex(hexString) {
+    const hexRegex = /^[0-9A-Fa-f]+$/;
+    return hexRegex.test(hexString);
+  }
+  
 function isValidText(text) {
     for (let i = 0; i < text.length; i++) {
         // Get the ASCII code for each character
