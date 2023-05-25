@@ -22,7 +22,14 @@ function BinaryToDigit(input) {
     return parseInt(input, 2);
 }
 
-
+function DigitToBinary(input) {
+    return input.toString(2);
+}
+function BinaryToHexadecimal(input) {
+    var digit = BinaryToDigit(input);
+    var hexadecimal = digit.toString(16).toUpperCase();
+    return hexadecimal;
+}
 
 button.addEventListener('click', function (event) {
     event.preventDefault();
