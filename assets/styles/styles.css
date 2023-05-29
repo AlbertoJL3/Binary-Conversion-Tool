@@ -131,7 +131,7 @@ button {
 }
 
 /* CSS for differnt displays */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     form {
         justify-content: center;
         flex-direction: column;
